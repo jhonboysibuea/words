@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 Class Cleaning extends CI_Controller{
-	var $start=12190;
+	var $start=0;
 	var $limit=50;
 
 	function __construct(){
@@ -31,11 +31,12 @@ Class Cleaning extends CI_Controller{
 		$success = 0;
 		foreach ($data as $row) {
 			$word_id = $row["word_id"];
+			$id = trim($row["id"]);
 			$definition = $row["definition"];
-			// $row = $this->db->select("word_id,id,definition")->from("m_words")->where("word_id", $word_id) ->get()->row();
-			
+
 			if (false!=$word_id){
-				$update = $this->db->where("word_id", $word_id)->update( "m_words", array("definition" => $definition) );
+				// $update = $this->db->where("word_id", $word_id)->update( "m_words", array("definition" => $definition) );
+				$update = $this->db->where("word_id", $word_id)->update( "m_words", array("id" => $id) );
 				if ($update) $success++;
 			}
 		}

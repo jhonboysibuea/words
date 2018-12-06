@@ -31,12 +31,13 @@ $(function(){
 	function dataParse(data){
 		var newData={};
 		$.each(data, function(i,row){
-			var word_id = row.word_id;
+			var word_id = (row.word_id).trim();
 			var defin = row.definition;
 			var htmls = $('<textarea />').html(defin).text();
 			var rowData = {};
 			rowData.definition = htmls;
 			rowData.word_id = word_id;
+			rowData.id = row.id;
 
 			newData[i] = rowData;
 		});

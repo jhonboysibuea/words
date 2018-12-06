@@ -17,7 +17,7 @@
 
                     </form>
 
-                    <div id="result" class="result">
+                    <div id="result" class="result" style="display: block!important">
                         <div><h3>Definisi dari kata <?php echo $row->id ?></h3></div>
                         <div><?php echo $row->definition ?></div>
                     </div>
@@ -25,4 +25,3 @@
                 <!-- Content -->
             </section>
             <!--Section: Jumbotron-->
-            

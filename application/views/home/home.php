@@ -16,9 +16,8 @@
 
                     </form>
 
-                    <div id="result" class="result"></div>
+                    <div id="result" class="result" style="display: none;"></div>
                 </div>
                 <!-- Content -->
             </section>
             <!--Section: Jumbotron-->
-            

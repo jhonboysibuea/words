@@ -53,5 +53,7 @@ $route['default_controller'] = 'home';
 $route['tentang-kami'] = 'home/tentang_kami';
 $route['kebijakan-privasi'] = 'home/kebijakan_privasi';
 $route['hubungi-kami'] = 'home/hubungi_kami';
+$route['arti-kata/([a-z\-A-Z]+)'] = 'home/arti_kata/$1';
+$route['sitemap.xml'] = 'home/sitemap';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+
+<?php if (!empty($description)){?>
+<meta name="description" content="<?php echo $description ?>">
+<?php }else{ ?>
+<meta name="keywords" content="<?php echo preg_replace('/[^a-z0-9A-Z]/i', " ", $_SERVER['PATH_INFO'])." Cari Kata Berdasarkan Kamus Besar Bahasa Indonesia" ?>">
+    <?php } ?>
+<?php if (!empty($keywords)){?>
+<meta name="keywords" content="<?php echo $keywords ?>">
+<?php }else{ ?>
+<meta name="keywords" content="<?php echo preg_replace('/[^a-z0-9A-Z]/i', " ", $_SERVER['PATH_INFO'])." Cari Kata Berdasarkan Kamus Besar Bahasa Indonesia" ?>">
+    <?php } ?>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Cari Kata Berdasarkan Kamus Besar Bahasa Indonesia</title>
+
+<title><?php echo empty($title) ? preg_replace('/[^a-z0-9A-Z]/i', " ", $_SERVER['PATH_INFO'])." Cari Kata Berdasarkan Kamus Besar Bahasa Indonesia":$title ?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url() ?>css/mdb.min.css" rel="stylesheet">

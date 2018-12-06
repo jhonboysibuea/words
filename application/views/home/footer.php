@@ -49,7 +49,6 @@
     </script>
 
     <script type="text/javascript">
-    $('.result').hide();
     $("#findWord").on("submit", function(event){
         event.preventDefault();
 
