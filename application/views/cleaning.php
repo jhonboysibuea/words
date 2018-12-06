@@ -12,40 +12,54 @@
 
 <script type="text/javascript">
 $(function(){
+	var base_url = <?php echo json_encode($base_url); ?>;
+	var limit = <?php echo json_encode($limit); ?>;
+	var start=<?php echo json_encode($start); ?>;
 	var i = 0;
 	var isAjax = false;
-	var start=0;
+	var totalLastResult = 0;
 
-	function sendData(id){
+	function sendData(data){
+		// console.log (data);
 		isAjax = true;
-		$.post("http://words.adampc.com/cleaning/do_send?id="+id).done(function(e){
-			isAjax = false;
+		$.post(base_url+"cleaning/do_send", {data:data}).done(function(e){
 			i++;
+			isAjax = false;
 		});
 	}
 
 	function dataParse(data){
+		var newData={};
 		$.each(data, function(i,row){
-			var id = row.word_id;
-			sendData(id);
+			var word_id = row.word_id;
+			var defin = row.definition;
+			var htmls = $('<textarea />').html(defin).text();
+			var rowData = {};
+			rowData.definition = htmls;
+			rowData.word_id = word_id;
+
+			newData[i] = rowData;
 		});
+
+		sendData(newData);
 	}
 
 	function getData(){
 		isAjax = true;
-		$.getJSON("http://words.adampc.com/cleaning/do_clean?s="+start).done(function(response){
+		$.getJSON(base_url+"cleaning/do_clean?s="+start).done(function(response){
 			var data = response.data;
 			dataParse(data);
-			start++;
+			totalLastResult=response.total;
+			start+=limit;
 		});
 	}
 
 	function cleaning(){
-		// if (i>3) return;
+		if (i>0 && totalLastResult<limit) return;
 		if (!isAjax) {
 			getData();
 		}
-		setTimeout(cleaning, 500);
+		setTimeout(cleaning, 10);
 	}
 
 	cleaning();
